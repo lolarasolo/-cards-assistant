@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///Users/lola2/Downloads/cards-assistant_2.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARDS · Assistant de vente</title>
+<link href="./CARDS · Assistant de vente_files/css2" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F3EE;--surface:#FFFFFF;--surface2:#EFEDE8;--surface3:#E8E5DE;
+  --text:#1A1916;--muted:#6B6860;--light:#A09D98;
+  --blue:#185FA5;--blue-bg:#E6F1FB;--blue-dark:#0C447C;
+  --teal:#0F6E56;--teal-bg:#E1F5EE;
+  --amber:#854F0B;--amber-bg:#FAEEDA;
+  --coral:#993C1D;--coral-bg:#FAECE7;
+  --purple:#534AB7;--purple-bg:#EEEDFE;
+  --green:#3B6D11;--green-bg:#EAF3DE;
+  --border:rgba(26,25,22,0.1);--border-md:rgba(26,25,22,0.18);
+  --r:14px;--r-sm:8px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+.site-header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-badge{background:var(--text);color:#F5F3EE;font-size:11px;font-weight:500;letter-spacing:.1em;padding:4px 10px;border-radius:6px}
+.logo-dot{color:var(--border-md);font-size:18px}
+.logo-name{font-family:'DM Serif Display',serif;font-size:20px}
+.header-pill{font-size:12px;color:var(--muted);background:var(--surface2);padding:5px 14px;border-radius:20px}
+
+.setup-wrap{max-width:500px;margin:80px auto;background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:40px;text-align:center}
+.setup-wrap h2{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;margin-bottom:10px}
+.setup-wrap p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px}
+.input-row{display:flex;gap:10px}
+.input-row input{flex:1;font-family:'DM Sans',sans-serif;font-size:13px;padding:11px 14px;border:1px solid var(--border-md);border-radius:var(--r-sm);background:var(--bg);color:var(--text);outline:none}
+.input-row input:focus{border-color:var(--blue)}
+.btn-dark{background:var(--text);color:#F5F3EE;border:none;border-radius:var(--r-sm);padding:11px 22px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.btn-dark:hover{opacity:.82}
+.setup-hint{font-size:12px;color:var(--light);margin-top:14px}
+.setup-hint a{color:var(--blue);text-decoration:none}
+
+.api-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:9px 40px;display:none;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted)}
+.api-bar button{font-family:'DM Sans',sans-serif;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:6px;padding:4px 12px;cursor:pointer;color:var(--muted)}
+.api-bar button:hover{color:var(--text);border-color:var(--text)}
+
+.app{display:none;max-width:900px;margin:0 auto;padding:52px 24px 100px}
+.app.visible{display:block}
+
+.app-hero{margin-bottom:44px}
+.app-hero h1{font-family:'DM Serif Display',serif;font-size:38px;font-weight:400;line-height:1.2;margin-bottom:10px}
+.app-hero p{font-size:16px;color:var(--muted);max-width:540px;line-height:1.6}
+
+.section-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:14px}
+
+.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.step-block{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:24px}
+.step-num{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:14px}
+
+.cibles{display:flex;flex-direction:column;gap:10px}
+.cible-btn{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:border-color .15s;width:100%}
+.cible-btn:hover{border-color:var(--border-md)}
+.cible-btn.active{border:2px solid var(--blue);background:var(--blue-bg)}
+.cible-icon{font-size:18px;flex-shrink:0}
+.cible-name{font-size:13px;font-weight:500;color:var(--text);line-height:1.3;text-align:left}
+.cible-sub{font-size:11px;color:var(--muted);margin-top:2px;text-align:left}
+.cible-btn.active .cible-name{color:var(--blue-dark)}
+.cible-btn.active .cible-sub{color:var(--blue)}
+
+.etapes{display:flex;flex-direction:column;gap:8px}
+.etape-btn{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 16px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:border-color .15s;width:100%}
+.etape-btn:hover{border-color:var(--border-md)}
+.etape-btn.active{border:2px solid var(--purple);background:var(--purple-bg)}
+.etape-emoji{font-size:16px;flex-shrink:0}
+.etape-name{font-size:13px;font-weight:500;color:var(--text);text-align:left}
+.etape-desc{font-size:11px;color:var(--muted);margin-top:2px;text-align:left}
+.etape-btn.active .etape-name{color:var(--purple)}
+
+.context-full{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:24px;margin-bottom:24px}
+textarea{width:100%;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;min-height:80px;resize:vertical;outline:none;line-height:1.6;transition:border-color .15s}
+textarea:focus{border-color:var(--blue)}
+textarea::placeholder{color:var(--light)}
+
+.btn-generate{background:var(--blue);color:#fff;border:none;border-radius:var(--r-sm);padding:15px 32px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;width:100%;transition:background .15s}
+.btn-generate:hover{background:var(--blue-dark)}
+.btn-generate:disabled{background:var(--surface3);color:var(--light);cursor:not-allowed}
+
+.results{margin-top:44px;display:none}
+.results.visible{display:block}
+.results-intro{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.results-intro h2{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-right:6px}
+.badge{font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px}
+.badge-cible{background:var(--blue-bg);color:var(--blue-dark)}
+.badge-etape{background:var(--purple-bg);color:var(--purple)}
+
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.result-card-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.rtag{font-size:11px;font-weight:500;letter-spacing:.05em;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.rtag-cas{background:var(--teal-bg);color:var(--teal)}
+.rtag-args{background:var(--green-bg);color:var(--green)}
+.rtag-script{background:var(--amber-bg);color:var(--amber)}
+.rtag-closing{background:var(--blue-bg);color:var(--blue-dark)}
+.rtag-objections{background:var(--coral-bg);color:var(--coral)}
+.result-card-title{font-size:14px;font-weight:500;color:var(--text)}
+.copy-btn{margin-left:auto;font-size:11px;font-family:'DM Sans',sans-serif;background:none;border:1px solid var(--border-md);border-radius:6px;padding:3px 10px;cursor:pointer;color:var(--muted);white-space:nowrap}
+.copy-btn:hover{color:var(--text)}
+.result-card-body{padding:18px 20px;font-size:14px;line-height:1.85;color:var(--text);white-space:pre-wrap}
+
+.loading-wrap{padding:18px 20px;display:flex;gap:6px;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--light);animation:blink 1.2s ease-in-out infinite}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.err-msg{padding:18px 20px;color:#A32D2D;font-size:14px}
+
+@media(max-width:650px){
+  .site-header{padding:14px 20px}
+  .app{padding:28px 16px 60px}
+  .steps-grid{grid-template-columns:1fr}
+  .app-hero h1{font-size:26px}
+  .input-row{flex-direction:column}
+  .api-bar{padding:10px 20px}
+  .results-intro{gap:8px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-wrap">
+    <span class="logo-badge">Co-Idea</span>
+    <span class="logo-dot">·</span>
+    <span class="logo-name">CARDS</span>
+  </div>
+  <span class="header-pill">Assistant de vente B2B</span>
+</header>
+
+<div class="api-bar" id="apiBar" style="display: flex;">
+  <span>Clé API active : <strong id="apiPreview">sk-ant-api03-pmMfg...</strong></span>
+  <button onclick="resetKey()">Changer</button>
+</div>
+
+<div class="setup-wrap" id="setupScreen" style="display: none;">
+  <h2>Bienvenue 👋</h2>
+  <p>Pour utiliser l'assistant, colle ta clé API Anthropic ci-dessous. Elle sera mémorisée dans ton navigateur.</p>
+  <div class="input-row">
+    <input type="password" id="apiInput" placeholder="sk-ant-api03-..." onkeydown="if(event.key===&#39;Enter&#39;)saveKey()">
+    <button class="btn-dark" onclick="saveKey()">Valider</button>
+  </div>
+  <p class="setup-hint">Clé disponible sur <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a> → API Keys</p>
+</div>
+
+<div class="app visible" id="mainApp">
+  <div class="app-hero">
+    <h1>Ton script de vente,<br>adapté à chaque situation.</h1>
+    <p>Sélectionne ta cible et l'étape du tunnel — l'IA génère les cas d'usage pertinents, les arguments, le script et les objections à anticiper.</p>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-block">
+      <p class="step-num">1 · Cible</p>
+      <div class="cibles">
+        <button class="cible-btn" data-cible="prevention" onclick="selectCible(this)">
+          <span class="cible-icon">🦺</span>
+          <div>
+            <div class="cible-name">Responsable prévention &amp; sécurité</div>
+            <div class="cible-sub">PME / ETI · Grand groupe</div>
+          </div>
+        </button>
+        <button class="cible-btn" data-cible="atelier" onclick="selectCible(this)">
+          <span class="cible-icon">🏭</span>
+          <div>
+            <div class="cible-name">Responsable atelier / Dirigeant opérationnel</div>
+            <div class="cible-sub">PME / ETI · Grand groupe</div>
+          </div>
+        </button>
+        <button class="cible-btn" data-cible="directeur" onclick="selectCible(this)">
+          <span class="cible-icon">📊</span>
+          <div>
+            <div class="cible-name">Directeur d'entreprise</div>
+            <div class="cible-sub">PME / ETI · Grand groupe</div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <p class="step-num">2 · Étape du tunnel</p>
+      <div class="etapes">
+        <button class="etape-btn" data-etape="mail" onclick="selectEtape(this)">
+          <span class="etape-emoji">📧</span>
+          <div>
+            <div class="etape-name">Mail de prospection</div>
+            <div class="etape-desc">Premier contact écrit, accroche et CTA</div>
+          </div>
+        </button>
+        <button class="etape-btn" data-etape="appel" onclick="selectEtape(this)">
+          <span class="etape-emoji">📞</span>
+          <div>
+            <div class="etape-name">Premier appel (5 min)</div>
+            <div class="etape-desc">Qualifier, piquer la curiosité, décrocher un RDV</div>
+          </div>
+        </button>
+        <button class="etape-btn" data-etape="demo" onclick="selectEtape(this)">
+          <span class="etape-emoji">💻</span>
+          <div>
+            <div class="etape-name">Démo produit</div>
+            <div class="etape-desc">Montrer, projeter les cas d'usage, créer le désir</div>
+          </div>
+        </button>
+        <button class="etape-btn" data-etape="closing" onclick="selectEtape(this)">
+          <span class="etape-emoji">🤝</span>
+          <div>
+            <div class="etape-name">Closing / Négociation</div>
+            <div class="etape-desc">Lever les freins, conclure, passer à l'action</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="context-full">
+    <p class="step-num">3 · Contexte du prospect (optionnel mais recommandé)</p>
+    <textarea id="contexte" placeholder="Ex : entreprise agroalimentaire de 300 personnes, 2 accidents de travail cette année, chef d&#39;atelier sensible au lean, pas encore équipé en outils collaboratifs..."></textarea>
+  </div>
+
+  <button class="btn-generate" id="genBtn" onclick="generate()" disabled="">
+    Générer mon script personnalisé
+  </button>
+
+  <div class="results" id="results">
+    <div class="results-intro">
+      <h2>Ton script</h2>
+      <span class="badge badge-cible" id="badgeCible"></span>
+      <span class="badge badge-etape" id="badgeEtape"></span>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-head">
+        <span class="rtag rtag-cas">Cas d'usage recommandés</span>
+        <span class="result-card-title">Ce que CARDS peut faire pour ce profil</span>
+        <button class="copy-btn" onclick="copyCard(&#39;bodyCas&#39;)">Copier</button>
+      </div>
+      <div id="bodyCas"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-head">
+        <span class="rtag rtag-args">Arguments clés</span>
+        <span class="result-card-title">Pourquoi CARDS pour cette cible</span>
+        <button class="copy-btn" onclick="copyCard(&#39;bodyArgs&#39;)">Copier</button>
+      </div>
+      <div id="bodyArgs"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-head">
+        <span class="rtag rtag-script" id="scriptTag">Script</span>
+        <span class="result-card-title" id="scriptTitle">Script adapté à l'étape</span>
+        <button class="copy-btn" onclick="copyCard(&#39;bodyScript&#39;)">Copier</button>
+      </div>
+      <div id="bodyScript"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-head">
+        <span class="rtag rtag-objections">Objections fréquentes</span>
+        <span class="result-card-title">Anticiper et répondre</span>
+        <button class="copy-btn" onclick="copyCard(&#39;bodyObjections&#39;)">Copier</button>
+      </div>
+      <div id="bodyObjections"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CIBLES = {
+  prevention: {
+    label: "Responsable prévention & sécurité",
+    profil: "Son rôle : réduire les accidents, TMS et risques terrain. Il cherche des outils traçables et justifiables à sa direction. Très sensible aux normes ISO 45001, aux taux de fréquence/gravité, aux obligations réglementaires. Il a souvent du mal à rendre les ateliers sécurité engageants et à garder une trace structurée des actions."
+  },
+  atelier: {
+    label: "Responsable atelier / Dirigeant opérationnel",
+    profil: "Son rôle : productivité, qualité, montée en compétences des équipes. Il est pragmatique, sur le terrain. Il ne veut pas d'outils qui ralentissent la prod. Sensible au lean, à la réduction des rebuts, au temps de formation des nouveaux opérateurs, aux erreurs d'assemblage et de gestes métiers."
+  },
+  directeur: {
+    label: "Directeur d'entreprise",
+    profil: "Son rôle : performance globale, ROI, image et compétitivité. Il pense transformation et différenciation. Il valide les investissements mais délègue l'opérationnel. Sensible à l'innovation, aux preuves de résultat, à l'image employeur et à la capacité à embarquer les équipes."
+  }
+};
+
+const ETAPES = {
+  mail: { label: "Mail de prospection", tagClass: "rtag-script", titre: "Mail de prospection" },
+  appel: { label: "Premier appel (5 min)", tagClass: "rtag-script", titre: "Script d'appel (5 min)" },
+  demo: { label: "Démo produit", tagClass: "rtag-closing", titre: "Trame de démo" },
+  closing: { label: "Closing / Négociation", tagClass: "rtag-closing", titre: "Script de closing" }
+};
+
+const ETAPES_INSTRUCTIONS = {
+  mail: `Rédige un mail de prospection percutant (150 mots max). Inclure : un objet de mail accrocheur, une accroche personnalisée sur un problème concret de cette cible, 2 phrases sur ce que CARDS résout pour eux, 1 cas d'usage précis, un CTA pour décrocher un appel de 15 min. Ton : professionnel mais direct, pas corporate.`,
+  appel: `Rédige un script de premier appel de 5 minutes. Structure : accroche (10 sec), question de qualification rapide, pitch 30 secondes centré sur 1 problème de la cible, 2 questions pour qualifier l'intérêt, proposition de RDV démo. Ton : énergique, curieux, pas vendeur. Inclure des variantes si le prospect est pressé ou froid.`,
+  demo: `Rédige une trame de démo produit (30-45 min). Structure : ancrage sur le problème identifié, 2-3 cas d'usage à montrer dans l'ordre logique, moments clés d'interaction avec le prospect pendant la démo, questions à poser pour confirmer le fit, conclusion et proposition de prochaine étape. Sois très concret sur ce que la commerciale doit montrer.`,
+  closing: `Rédige un script de closing et négociation. Structure : récapitulatif des besoins identifiés, reformulation de la valeur pour cette cible, proposition commerciale claire, technique de closing douce ("Qu'est-ce qui vous retient ?"), gestion des freins budget et délais. Inclure des phrases exactes à dire dans chaque situation.`
+};
+
+let selectedCible = null;
+let selectedEtape = null;
+let apiKey = localStorage.getItem('cards_key') || '';
+
+function init() {
+  if (apiKey) showApp();
+}
+
+function saveKey() {
+  const v = document.getElementById('apiInput').value.trim();
+  if (!v.startsWith('sk-')) { alert('La clé doit commencer par "sk-ant-..."'); return; }
+  apiKey = v;
+  localStorage.setItem('cards_key', apiKey);
+  showApp();
+}
+
+function showApp() {
+  document.getElementById('setupScreen').style.display = 'none';
+  const bar = document.getElementById('apiBar');
+  bar.style.display = 'flex';
+  document.getElementById('apiPreview').textContent = apiKey.slice(0, 18) + '...';
+  document.getElementById('mainApp').classList.add('visible');
+}
+
+function resetKey() {
+  localStorage.removeItem('cards_key');
+  location.reload();
+}
+
+function selectCible(btn) {
+  document.querySelectorAll('.cible-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedCible = btn.dataset.cible;
+  checkReady();
+}
+
+function selectEtape(btn) {
+  document.querySelectorAll('.etape-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedEtape = btn.dataset.etape;
+  checkReady();
+}
+
+function checkReady() {
+  document.getElementById('genBtn').disabled = !(selectedCible && selectedEtape);
+}
+
+function loading(id) {
+  document.getElementById(id).innerHTML = '<div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+}
+
+function setBody(id, text) {
+  document.getElementById(id).innerHTML = '<div class="result-card-body">' + text + '</div>';
+}
+
+function setErr(id, msg) {
+  document.getElementById(id).innerHTML = msg ? '<div class="err-msg">' + msg + '</div>' : '';
+}
+
+function copyCard(id) {
+  const el = document.getElementById(id);
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.closest('.result-card').querySelector('.copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = 'Copié ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+async function generate() {
+  if (!selectedCible || !selectedEtape || !apiKey) return;
+
+  const contexte = document.getElementById('contexte').value.trim();
+  const cible = CIBLES[selectedCible];
+  const etape = ETAPES[selectedEtape];
+  const instruction = ETAPES_INSTRUCTIONS[selectedEtape];
+
+  const btn = document.getElementById('genBtn');
+  btn.disabled = true;
+  btn.textContent = 'Génération en cours...';
+
+  document.getElementById('badgeCible').textContent = cible.label;
+  document.getElementById('badgeEtape').textContent = etape.label;
+
+  const scriptTag = document.getElementById('scriptTag');
+  scriptTag.className = 'rtag ' + etape.tagClass;
+  document.getElementById('scriptTitle').textContent = etape.titre;
+
+  const results = document.getElementById('results');
+  results.classList.add('visible');
+  ['bodyCas','bodyArgs','bodyScript','bodyObjections'].forEach(loading);
+  results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const prompt = `Expert vente B2B pour Co-Idea. Produit : CARDS, projecteur interactif (projection + camera detection mains/objets). Usages : chasse aux risques, quiz securite, lean post-it, controle qualite production, guidage operateur, sur mesure. Cible : ${cible.label}. Profil : ${cible.profil} Etape : ${etape.label}.${contexte ? ' Contexte : ' + contexte : ''} Reponds UNIQUEMENT en JSON valide sans backtick ni texte autour, valeurs concises (max 3 phrases par item) : {"cas_usage":"2 cas usage pertinents. Format: - NOM: benefice.","arguments":"3 arguments. Format: - arg: explication.","script":"${instruction}","objections":"3 objections. Format: OBJECTION: x / REPONSE: y."}`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 2000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    if (!res.ok) {
+      const e = await res.json();
+      throw new Error(e.error?.message || 'Erreur ' + res.status);
+    }
+
+    const data = await res.json();
+    const raw = data.content.map(i => i.text || '').join('\n');
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
+    setBody('bodyCas', parsed.cas_usage);
+    setBody('bodyArgs', parsed.arguments);
+    setBody('bodyScript', parsed.script);
+    setBody('bodyObjections', parsed.objections);
+
+  } catch (err) {
+    const msg = (err.message.includes('401') || err.message.includes('auth'))
+      ? 'Clé API invalide. Vérifie sur console.anthropic.com → API Keys.'
+      : 'Erreur : ' + err.message;
+    setErr('bodyCas', msg);
+    setErr('bodyArgs', '');
+    setErr('bodyScript', '');
+    setErr('bodyObjections', '');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Générer mon script personnalisé';
+}
+
+init();
+</script>
+
+
+</body></html>
