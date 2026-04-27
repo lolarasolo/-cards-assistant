@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
-<!-- saved from url=(0052)file:///Users/lola2/Downloads/cards-assistant_2.html -->
-<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CARDS · Assistant de vente</title>
-<link href="./CARDS · Assistant de vente_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -135,22 +134,22 @@ textarea::placeholder{color:var(--light)}
   <span class="header-pill">Assistant de vente B2B</span>
 </header>
 
-<div class="api-bar" id="apiBar" style="display: flex;">
-  <span>Clé API active : <strong id="apiPreview">sk-ant-api03-pmMfg...</strong></span>
+<div class="api-bar" id="apiBar">
+  <span>Clé API active : <strong id="apiPreview"></strong></span>
   <button onclick="resetKey()">Changer</button>
 </div>
 
-<div class="setup-wrap" id="setupScreen" style="display: none;">
+<div class="setup-wrap" id="setupScreen">
   <h2>Bienvenue 👋</h2>
   <p>Pour utiliser l'assistant, colle ta clé API Anthropic ci-dessous. Elle sera mémorisée dans ton navigateur.</p>
   <div class="input-row">
-    <input type="password" id="apiInput" placeholder="sk-ant-api03-..." onkeydown="if(event.key===&#39;Enter&#39;)saveKey()">
+    <input type="password" id="apiInput" placeholder="sk-ant-api03-..." onkeydown="if(event.key==='Enter')saveKey()"/>
     <button class="btn-dark" onclick="saveKey()">Valider</button>
   </div>
-  <p class="setup-hint">Clé disponible sur <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a> → API Keys</p>
+  <p class="setup-hint">Clé disponible sur <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys</p>
 </div>
 
-<div class="app visible" id="mainApp">
+<div class="app" id="mainApp">
   <div class="app-hero">
     <h1>Ton script de vente,<br>adapté à chaque situation.</h1>
     <p>Sélectionne ta cible et l'étape du tunnel — l'IA génère les cas d'usage pertinents, les arguments, le script et les objections à anticiper.</p>
@@ -163,7 +162,7 @@ textarea::placeholder{color:var(--light)}
         <button class="cible-btn" data-cible="prevention" onclick="selectCible(this)">
           <span class="cible-icon">🦺</span>
           <div>
-            <div class="cible-name">Responsable prévention &amp; sécurité</div>
+            <div class="cible-name">Responsable prévention & sécurité</div>
             <div class="cible-sub">PME / ETI · Grand groupe</div>
           </div>
         </button>
@@ -221,10 +220,10 @@ textarea::placeholder{color:var(--light)}
 
   <div class="context-full">
     <p class="step-num">3 · Contexte du prospect (optionnel mais recommandé)</p>
-    <textarea id="contexte" placeholder="Ex : entreprise agroalimentaire de 300 personnes, 2 accidents de travail cette année, chef d&#39;atelier sensible au lean, pas encore équipé en outils collaboratifs..."></textarea>
+    <textarea id="contexte" placeholder="Ex : entreprise agroalimentaire de 300 personnes, 2 accidents de travail cette année, chef d'atelier sensible au lean, pas encore équipé en outils collaboratifs..."></textarea>
   </div>
 
-  <button class="btn-generate" id="genBtn" onclick="generate()" disabled="">
+  <button class="btn-generate" id="genBtn" onclick="generate()" disabled>
     Générer mon script personnalisé
   </button>
 
@@ -239,7 +238,7 @@ textarea::placeholder{color:var(--light)}
       <div class="result-card-head">
         <span class="rtag rtag-cas">Cas d'usage recommandés</span>
         <span class="result-card-title">Ce que CARDS peut faire pour ce profil</span>
-        <button class="copy-btn" onclick="copyCard(&#39;bodyCas&#39;)">Copier</button>
+        <button class="copy-btn" onclick="copyCard('bodyCas')">Copier</button>
       </div>
       <div id="bodyCas"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
     </div>
@@ -248,7 +247,7 @@ textarea::placeholder{color:var(--light)}
       <div class="result-card-head">
         <span class="rtag rtag-args">Arguments clés</span>
         <span class="result-card-title">Pourquoi CARDS pour cette cible</span>
-        <button class="copy-btn" onclick="copyCard(&#39;bodyArgs&#39;)">Copier</button>
+        <button class="copy-btn" onclick="copyCard('bodyArgs')">Copier</button>
       </div>
       <div id="bodyArgs"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
     </div>
@@ -257,7 +256,7 @@ textarea::placeholder{color:var(--light)}
       <div class="result-card-head">
         <span class="rtag rtag-script" id="scriptTag">Script</span>
         <span class="result-card-title" id="scriptTitle">Script adapté à l'étape</span>
-        <button class="copy-btn" onclick="copyCard(&#39;bodyScript&#39;)">Copier</button>
+        <button class="copy-btn" onclick="copyCard('bodyScript')">Copier</button>
       </div>
       <div id="bodyScript"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
     </div>
@@ -266,7 +265,7 @@ textarea::placeholder{color:var(--light)}
       <div class="result-card-head">
         <span class="rtag rtag-objections">Objections fréquentes</span>
         <span class="result-card-title">Anticiper et répondre</span>
-        <button class="copy-btn" onclick="copyCard(&#39;bodyObjections&#39;)">Copier</button>
+        <button class="copy-btn" onclick="copyCard('bodyObjections')">Copier</button>
       </div>
       <div id="bodyObjections"><div class="loading-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
     </div>
@@ -446,6 +445,5 @@ async function generate() {
 
 init();
 </script>
-
-
-</body></html>
+</body>
+</html>
